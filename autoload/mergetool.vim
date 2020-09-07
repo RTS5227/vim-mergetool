@@ -302,6 +302,9 @@ function! s:remove_conflict_markers(pref_revision)
   if a:pref_revision ==# 'base'
     execute printf(delete_range, s:markers['ours'], s:markers['base'])
     execute printf(delete_range, s:markers['delimiter'], s:markers['theirs'])
+  elseif a:pref_revision ==# 'BASE'
+    execute '%d_'
+    call s:load_revision_from_index(a:pref_revision)
   elseif a:pref_revision ==# 'local'
     execute printf(delete_marker, s:markers['ours'])
     execute printf(delete_range, s:markers['base'], s:markers['theirs'])
